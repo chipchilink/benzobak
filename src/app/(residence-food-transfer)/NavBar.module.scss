@@ -1,0 +1,19 @@
+.wrapper {
+    background-color: var(--primary-color);
+    border-radius: 9999px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    color: #fff;
+    padding: 1.5rem 2rem;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    border-radius: 9999px;
+
+    &:global(.-active) {
+        background-color: rgba(255, 255, 255, .1);
+    }
+}

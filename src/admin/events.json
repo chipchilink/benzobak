@@ -1,0 +1,30 @@
+[
+    {
+        "month": "июль",
+        "day": 10,
+        "start": {
+            "hour": 13,
+            "minutes": 0
+        },
+        "end": {
+            "hour": 16,
+            "minutes": 0
+        },
+        "title": "Квиз",
+        "location": "Спортивная деревня"
+    },
+    {
+        "month": "июль",
+        "day": 10,
+        "start": {
+            "hour": 13,
+            "minutes": 0
+        },
+        "end": {
+            "hour": 16,
+            "minutes": 0
+        },
+        "title": "Квиз",
+        "location": "Спортивная деревня"
+    }
+]
