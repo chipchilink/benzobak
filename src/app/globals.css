@@ -1,0 +1,11 @@
+:root {
+  --page-width: 400px;
+  --primary-color: green;
+  --second-color: yellow;
+}
+
+*, *:after, *:before { box-sizing: border-box }
+
+html { font-size: 62.5% }
+
+body { font: 1.2em arial }
