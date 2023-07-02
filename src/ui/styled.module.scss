@@ -1,3 +1,21 @@
 .title {
-    color: green;
+    font-size: 22px;
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+.file {
+    display: block;
+    width: 104px;
+    height: 104px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+
+    &[href$=".pdf"] {
+        background-image: url('./icons/pdf.svg');
+    }
+
+    &[href$=".xlsx"] {
+        background-image: url('./icons/xlsx.svg');
+    }
 }

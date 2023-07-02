@@ -1,4 +1,20 @@
 .page {
     max-width: var(--page-width);
     margin: 0 auto;
+    padding: 0 12px;
+}
+
+.back {
+    background: url('../../public/back.png') no-repeat;
+    display: block;
+    width: 238px;
+    height: 170px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: .1;
+}
+
+.head {
+    margin-bottom: -10px;
 }
