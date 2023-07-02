@@ -1,0 +1,29 @@
+.wrapper {
+    border-radius: 9999px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(to right, #1BAA2F, #05D108);
+    font-size: 14px;
+    display: table;
+    width: 100%;
+}
+
+.item {
+    display: table-cell;
+    color: #fff;
+    padding: 14px;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    border-radius: 9999px;
+    white-space: nowrap;
+
+    &:global(.-active) {
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+
+    &:hover,
+    &:global(.-active) {
+        background-color: rgba(255, 255, 255, .1);
+    }
+}

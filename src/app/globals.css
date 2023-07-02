@@ -1,11 +1,11 @@
 :root {
   --page-width: 400px;
-  --primary-color: green;
-  --second-color: yellow;
+  --primary-color: #21A038;
+  --second-color: #FAED00;
 }
 
 *, *:after, *:before { box-sizing: border-box }
 
 html { font-size: 62.5% }
 
-body { font: 1.2em arial }
+body { font: 1.2em Roboto }

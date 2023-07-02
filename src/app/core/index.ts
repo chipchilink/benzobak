@@ -1,7 +1,6 @@
 import schedule from '@/admin/schedule.json';
 import leaderboards from '@/admin/leaderboard.json';
 import summary from '@/admin/summary.json';
-import Test from '@/admin/Residence';
 import * as D from '@/utils/data';
 
 const aggregateDates = () => {
@@ -27,21 +26,12 @@ const aggregateDates = () => {
 
   return Array.from(result);
 };
+  
+const asc = (a: number, b: number) => a - b;
 
-export default () => {
+export const getDays = () => aggregateDates().sort(asc);
+export const getFirstDay = () => getDays()[0];
 
-  const days = aggregateDates().sort((a, b) => b - a).map((t) => {
-    const x = D.unnormalizedDate(t);
-    return D.render(x);
-  })
+export const getSections = () => ['schedule', 'leaderboard', 'summary'];
 
-  return (
-    <div>
-      {days.map((x) => {
-        return (
-          <span key={x}>{x}</span>
-        );
-      })}
-    </div>
-  );
-}
+export const getFirstSection = () => getSections()[0];

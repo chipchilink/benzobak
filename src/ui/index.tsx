@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from './styled.module.scss';
 
 export const Title = (p: { children: string }) => {
@@ -6,4 +7,10 @@ export const Title = (p: { children: string }) => {
 
 export const Description = (p: { children: string }) => {
     return <p>{p.children}</p>
+};
+
+export const File = (p: { href: string }) => {
+    return (
+        <Link href={`/${p.href}`} className={styled.file} />
+    );
 };
