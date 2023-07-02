@@ -1,3 +1,4 @@
+import Navigation from '@/admin/Navigation'
 export default () => {
-    return <h1>Hello world!!</h1>;
+    return <Navigation/>;
   }

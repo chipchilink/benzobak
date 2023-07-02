@@ -1,3 +1,5 @@
+import '@/admin/Medicine'
+import Medicine from "@/admin/Medicine";
 export default () => {
-    return <h1>Hello world!!</h1>;
+    return <Medicine/>;
   }
