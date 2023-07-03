@@ -1,5 +1,5 @@
-import '@/admin/Medicine'
-import Medicine from '@/admin/Medicine'
+import content from '@/admin/Medicine'
+
 export default () => {
-  return <Medicine />
+  return content
 }

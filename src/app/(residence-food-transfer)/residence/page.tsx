@@ -1,5 +1,5 @@
-import Residence from '@/admin/Residence'
+import content from '@/admin/Residence'
 
 export default () => {
-  return <Residence />
+  return content
 }

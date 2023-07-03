@@ -7,15 +7,15 @@ import { ErrorByDay, byDay } from '@/app/shared'
 import table from './LeaderBoard.module.scss'
 
 export default () => {
-  const H = useHelped()
-  const currentDay = H.sport.getCurrentDay()
+  const app = useHelped()
+  const currentDay = app.sport.getCurrentDay()
 
   const data = leaderboard.findLast(byDay(currentDay))
 
   if (!data)
     return (
       <ErrorByDay day={currentDay}>
-        {(d) => `Турнирная таблица в день ${d} не найдена!`}
+        Результаты ещё не объявлены!<br/> Пожалуйста подождите
       </ErrorByDay>
     )
 

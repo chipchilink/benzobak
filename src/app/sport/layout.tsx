@@ -56,12 +56,12 @@ const Item = (p: { section: string }) => {
     app.sport.pushSection(p.section)
   }
 
-  const to = navigate.sport.day(app.sport.getCurrentDay())
+  const href = navigate.sport.day(app.sport.getCurrentDay()).page(p.section)
   const isActive = p.section === app.sport.getCurrentSection()
 
   return (
     <NavBar.Item
-      href={to.page(p.section)}
+      href={href}
       onClick={onClick}
       isActive={isActive}
     >

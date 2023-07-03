@@ -1,7 +1,7 @@
 .page {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 12px var(--bar-height);
+  padding: 0 12px calc(var(--bar-height) + 30px);
 }
 
 .back {
@@ -18,4 +18,13 @@
 
 .head {
   margin-bottom: -10px;
+}
+
+.error-block {
+    margin-top: 180px;
+    text-align: center;
+}
+
+.error {
+    color: var(--primary-color);
 }

@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "dist/types/**/*.ts"
-  ],
+, "src/pages/404.js"  ],
   "exclude": [
     "node_modules"
   ]

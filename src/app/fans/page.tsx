@@ -1,5 +1,5 @@
-import Fans from '@/admin/Fans'
+import content from '@/admin/Fans'
 
 export default () => {
-  return <Fans />
+  return content
 }

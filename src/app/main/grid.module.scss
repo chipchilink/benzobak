@@ -1,0 +1,112 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 150px);
+  grid-gap: 10px;
+  font-size: 2rem;
+}
+
+@mixin icon($name){
+  .text:before {
+    display: block;
+    content: '';
+    width: 46px;
+    height: 47px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('./icons/#{$name}.svg') 50% 50% no-repeat;
+  }
+}
+
+@mixin back($name){
+  background: url('./icons/#{$name}-back.svg') 100% 100% no-repeat,
+    linear-gradient(49deg, #1EA434 0%, #01D802 100%);
+}
+
+.tile {
+  border-radius: 15px;
+  background: linear-gradient(49deg, #1EA434 0%, #01D802 100%);
+  color: #fff;
+  padding: 14px 17px;
+  text-transform: capitalize;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 500;
+  vertical-align: bottom;
+  position: relative;
+  transform: scale(1);
+  transition: transform .33s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+
+  &:after {
+    height: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    content: '';
+  }
+
+  &[href^='/sport'] {
+    background:
+      url('./icons/sport-back.svg') 100% 100% no-repeat,
+      linear-gradient(226deg, #FAE900 0%, #FF1655 100%);
+    grid-row: 1/3;
+    text-align: center;
+
+    &:after {
+      vertical-align: middle;
+    }
+
+    .text {
+      vertical-align: middle;
+
+      &:before {
+        display: block;
+        content: '';
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .2) url('./icons/sport.svg') 50% 50% no-repeat;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  &[href^='/residence'] {
+    grid-row: 3/5;
+    grid-column: 2/3;
+
+    @include back('rfd');
+    @include icon('rfd');
+  }
+
+  &[href^='/events'] {
+    @include back('events');
+    @include icon('events');
+  }
+
+  &[href^='/medicine'] {
+    @include back('medicine');
+    @include icon('medicine');
+  }
+
+  &[href^='/media-center'] {
+    @include back('media-center');
+    @include icon('media-center');
+  }
+
+  &[href^='/navigation'] {
+    @include back('navigation');
+    @include icon('navigation');
+  }
+}
+
+.text {
+  display: inline-block;
+  vertical-align: bottom;
+  width: min-content;
+}

@@ -1,4 +1,5 @@
-import Navigation from '@/admin/Navigation'
+import content from '@/admin/Navigation'
+
 export default () => {
-  return <Navigation />
+  return content
 }

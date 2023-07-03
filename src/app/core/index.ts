@@ -6,24 +6,21 @@ import * as D from '@/utils/data'
 
 export namespace Sport {
   const aggregateDates = () => {
-    const eventsD = new Set<number>()
-    const leaderD = new Set<number>()
     const result = new Set<number>()
 
     for (const event of schedule) {
       const t = D.normalizedDate(event)
-      eventsD.add(t)
+      result.add(t)
     }
 
     for (const leaderboard of leaderboards) {
       const t = D.normalizedDate(leaderboard)
-      leaderD.add(t)
+      result.add(t)
     }
 
     for (const total of summary) {
       const t = D.normalizedDate(total)
-
-      if (eventsD.has(t) && leaderD.has(t)) result.add(t)
+      result.add(t)
     }
 
     return Array.from(result)
