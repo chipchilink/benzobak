@@ -1,5 +1,5 @@
-import Food from '@/admin/Food';
+import Food from '@/admin/Food'
 
 export default () => {
-  return <Food />;
+  return <Food />
 }
