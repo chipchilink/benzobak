@@ -1,54 +1,54 @@
+@mixin icon($x) {
+  &:global(##{$x}) {
+    &:before {
+      background-image: url('./icons/#{$x}.svg');
+    }
+    &:global(.-active):before {
+      background-image: url('./icons/#{$x}-active.svg');
+    }
+  }
+}
+
 .wrapper {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    border-radius: 20px 20px 0 0;
-    background-color: var(--primary-color);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  background-color: var(--primary-color);
 }
 
 .container {
-    max-width: var(--page-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px 10px;
-    height: 103px;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 10px;
+  height: var(--bar-height);
 }
 
 .item {
-    font-size: 10px;
-    color: #fff;
-    text-decoration: none;
+  font-size: 10px;
+  color: #fff;
+  text-decoration: none;
 
-    &:global(.-active) {
-        color: var(--second-color);
-    }
+  &:global(.-active) {
+    color: #faed00;
+  }
 
-    &:before {
-        content: '';
-        display: block;
-        width: 30px;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        margin: 0 auto 10px;
-    }
+  &:before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin: 0 auto 10px;
+  }
 
-    &:global(#main):before {
-        background-image: url('./icons/main.svg');
-    }
-
-    &:global(#sport):before {
-        background-image: url('./icons/sport.svg');
-    }
-
-    &:global(#navigation):before {
-        background-image: url('./icons/navigation.svg');
-    }
-
-    &:global(#events):before {
-        background-image: url('./icons/events.svg');
-    }
+  @include icon('main');
+  @include icon('sport');
+  @include icon('navigation');
+  @include icon('events');
 }

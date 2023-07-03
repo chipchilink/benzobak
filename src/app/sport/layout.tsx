@@ -1,79 +1,87 @@
 'use client'
 
-import * as D from '@/utils/data';
-import * as _ from '@/app/core/';
-import * as NavBar from '@/app/components/NavBar';
-import { useHelped } from '@/app/state';
-import { Day } from './Day';
-import style from './Day.module.scss';
-
-const daymapper = (value: number) => {
-    const display = D.render(D.unnormalizedDate(value));
-    return {
-      display,
-      value,
-    };
-};
+import * as App from '@/app/core/'
+import * as NavBar from '@/app/components/NavBar'
+import * as D from '@/app/components/Day'
+import { useHelped } from '@/app/state'
+import { daymapper, navigate } from '@/app/shared'
 
 const sectionMapper = (value: string) => {
-    switch(value){
-        case 'schedule': return 'Расписание';
-        case 'leaderboard': return 'Турнирная таблица';
-        case 'summary': return 'Итоги';
-        default: return '';
+  switch (value) {
+    case 'schedule':
+      return 'Расписание'
+    case 'leaderboard':
+      return 'Турнирная таблица'
+    case 'summary':
+      return 'Итоги'
+    default: {
+      throw new Error(`Секции ${value} не существует!`)
     }
-};
+  }
+}
+
+const Day = (p: { value: number; display: string }) => {
+  const app = useHelped()
+
+  const onClick = () => {
+    app.sport.pushDay(p.value)
+  }
+
+  const section = app.sport.getCurrentSection()
+  const href = navigate.sport.day(p.value).page(section)
+  const isActive = app.sport.getCurrentDay() === p.value
+
+  return (
+    <D.Day href={href} isActive={isActive} onClick={onClick}>
+      {p.display}
+    </D.Day>
+  )
+}
 
 const Days = () => {
-    const days = _.getDays().map(daymapper);
-
-    return (
-        <div className={style.container}>
-            {days.map((day) => {
-                return <Day key={day.value} {...day} />
-            })}
-        </div>
-    );
-};
-
-const sport = {
-    day: (d: number) => ({
-        page: (p: string) => `/sport/${d}/${p}`,
-    })
-};
+  return (
+    <D.Container>
+      {App.Sport.getDays().map((day) => {
+        const p = daymapper(day)
+        return <Day key={p.value} {...p} />
+      })}
+    </D.Container>
+  )
+}
 
 const Item = (p: { section: string }) => {
-    const H = useHelped();
-    const to = sport.day(H.getCurrentDay());
+  const app = useHelped()
 
-    const onClick = () => {
-        H.pushSection(p.section);
-    };
+  const onClick = () => {
+    app.sport.pushSection(p.section)
+  }
 
-    return (
-        <NavBar.Item
-            href={to.page(p.section)}
-            onClick={onClick}
-            level={3}>
-            {sectionMapper(p.section)}
-        </NavBar.Item>
-    );
-};
+  const to = navigate.sport.day(app.sport.getCurrentDay())
+  const isActive = p.section === app.sport.getCurrentSection()
+
+  return (
+    <NavBar.Item
+      href={to.page(p.section)}
+      onClick={onClick}
+      isActive={isActive}
+    >
+      {sectionMapper(p.section)}
+    </NavBar.Item>
+  )
+}
 
 export default (p: { children: React.ReactNode }) => {
-    const sections = _.getSections();
- 
-    return (
-      <div>
-        <Days />
-        <NavBar.Container>
-            {sections.map((section) => {
-                return (
-                    <Item key={section} section={section} />
-                );
-            })}
-        </NavBar.Container>
-        {p.children}
-      </div>
-    );
-  }
+  const sections = App.Sport.getSections()
+
+  return (
+    <div>
+      <Days />
+      <NavBar.Container>
+        {sections.map((section) => (
+          <Item key={section} section={section} />
+        ))}
+      </NavBar.Container>
+      {p.children}
+    </div>
+  )
+}

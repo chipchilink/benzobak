@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Roboto } from 'next/font/google'
-import cn from 'classnames';
-import logo from '../../public/logo.png';
-import { NavBar } from './components/GlobalNavBar';
-import { State } from './state';
-import './globals.css';
+import cn from 'classnames'
+import logo from '../../public/logo.png'
+import { NavBar } from './components/GlobalNavBar'
+import { State } from './state'
 import 'normalize.css'
-import style from './layout.module.scss';
+import './globals.css'
+import style from './layout.module.scss'
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +15,7 @@ export const metadata = {
 }
 
 const roboto = Roboto({
-  weight: ['400','300'],
+  weight: ['400', '300'],
   subsets: ['latin'],
 })
 
@@ -31,12 +31,7 @@ export default function RootLayout({
         <State>
           <header className={style.head}>
             <Link href="/">
-              <Image
-                src={logo}
-                alt="logo"
-                width={197}
-                height={158}
-              />
+              <Image src={logo} alt="logo" width={197} height={158} />
             </Link>
           </header>
           {children}

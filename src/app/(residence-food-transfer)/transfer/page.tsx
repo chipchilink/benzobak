@@ -1,5 +1,5 @@
-import Transfer from '@/admin/Transfer';
+import Transfer from '@/admin/Transfer'
 
 export default () => {
-  return <Transfer />;
+  return <Transfer />
 }
