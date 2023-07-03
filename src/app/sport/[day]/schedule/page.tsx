@@ -12,12 +12,13 @@ export default () => {
   const currentDay = app.sport.getCurrentDay()
 
   const data = schedule.filter(byDay(currentDay))
-  const { select, filteredData } = useSelect(data);
+  const { select, filteredData } = useSelect(data)
 
   if (data.length === 0)
     return (
       <ErrorByDay day={currentDay}>
-        Расписание ещё не составлено!<br/> Пожалуйста подождите
+        Расписание ещё не составлено!
+        <br /> Пожалуйста подождите
       </ErrorByDay>
     )
 

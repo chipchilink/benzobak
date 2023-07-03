@@ -12,12 +12,13 @@ export default () => {
   const currentDay = app.event.getCurrentDay()
 
   const data = events.filter(byDay(currentDay))
-  const { select, filteredData } = useSelect(data);
+  const { select, filteredData } = useSelect(data)
 
   if (data.length === 0)
     return (
       <ErrorByDay day={currentDay}>
-        События ещё не объявлены!<br/> Пожалуйста подождите
+        События ещё не объявлены!
+        <br /> Пожалуйста подождите
       </ErrorByDay>
     )
 

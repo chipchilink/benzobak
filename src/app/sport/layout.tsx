@@ -60,11 +60,7 @@ const Item = (p: { section: string }) => {
   const isActive = p.section === app.sport.getCurrentSection()
 
   return (
-    <NavBar.Item
-      href={href}
-      onClick={onClick}
-      isActive={isActive}
-    >
+    <NavBar.Item href={href} onClick={onClick} isActive={isActive}>
       {sectionMapper(p.section)}
     </NavBar.Item>
   )

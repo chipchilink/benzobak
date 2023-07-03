@@ -15,7 +15,8 @@ export default () => {
   if (!data)
     return (
       <ErrorByDay day={currentDay}>
-        Результаты ещё не объявлены!<br/> Пожалуйста подождите
+        Результаты ещё не объявлены!
+        <br /> Пожалуйста подождите
       </ErrorByDay>
     )
 

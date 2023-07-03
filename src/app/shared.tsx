@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from 'react'
 import * as S from './state'
 import * as _ from './core'
 import * as D from '@/utils/data'
 import * as L from '@/utils/located'
-import style from './util.module.scss';
+import style from './util.module.scss'
 
 export const daymapper = (value: number) => {
   const display = D.render(D.unnormalizedDate(value))
@@ -24,20 +24,15 @@ export const ErrorByDay = (p: {
   day: number
   children: ((d: string) => React.ReactNode) | React.ReactNode
 }) => {
-
   const render = () => {
-    if(typeof p.children === 'function'){
+    if (typeof p.children === 'function') {
       const d = isNaN(p.day) ? '???' : String(p.day)
       return p.children(d)
     }
-    return p.children;
-  };
+    return p.children
+  }
 
-  return (
-    <div className={style.error}>
-      {render()}
-    </div>
-  );
+  return <div className={style.error}>{render()}</div>
 }
 
 export const navigate = {
@@ -92,17 +87,17 @@ export const useSelect = <A extends L.Located>(data: A[]) => {
     setLocation(e)
   }
 
-  const filteredData = data.filter(L.byLocation(location));
+  const filteredData = data.filter(L.byLocation(location))
 
   const select = {
     placeholder: 'Выбрать локацию',
     data: locations,
     value: location,
     onChange: pushLocation,
-  };
+  }
 
   return {
     filteredData,
     select,
-  };
-};
+  }
+}
