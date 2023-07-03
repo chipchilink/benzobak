@@ -4,46 +4,28 @@ import * as React from 'react'
 import events from '@/admin/events.json'
 import { useHelped } from '@/app/state'
 import { Select } from '@/app/components/Select'
-import { ErrorByDay, byDay, dedup } from '@/app/shared'
+import { ErrorByDay, byDay, useSelect } from '@/app/shared'
 import * as Unit from './Unit'
 
-const byLocation = (location: string | null) => (itm: Unit.Located) => {
-  if (location === null) return true
-  return itm.location === location
-}
-
 export default () => {
-  const H = useHelped()
-  const currentDay = H.sport.getCurrentDay()
+  const app = useHelped()
+  const currentDay = app.event.getCurrentDay()
 
   const data = events.filter(byDay(currentDay))
-  const [location, setLocation] = React.useState<string | null>(null)
+  const { select, filteredData } = useSelect(data);
 
   if (data.length === 0)
     return (
       <ErrorByDay day={currentDay}>
-        {(d) => `Расписания соревнований в день ${d} не найдено!`}
+        События ещё не объявлены!<br/> Пожалуйста подождите
       </ErrorByDay>
     )
 
-  const locations = dedup(
-    data.map((itm) => ({ value: itm.location, display: itm.location }))
-  )
-
-  const pushLocation = (e: string | null) => {
-    setLocation(e)
-  }
-
   return (
     <>
-      <Select
-        data={locations}
-        value={location}
-        onChange={pushLocation}
-        placeholder="Выбрать локацию"
-      />
+      <Select {...select} />
       <div>
-        {data.filter(byLocation(location)).map((item, i) => (
+        {filteredData.map((item, i) => (
           <Unit.Unit key={i} {...item} />
         ))}
       </div>

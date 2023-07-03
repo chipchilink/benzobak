@@ -1,16 +1,14 @@
-import { Navigation } from '@/ui'
+import * as UI from '@/ui'
 
-export default () => {
-  return (
-    <>
-      <Navigation href={'https://google.com'}>Деревня Универсиады</Navigation>
-      <Navigation href={'https://google.com'}>
-        Что посмотреть в Казани
-      </Navigation>
-      <Navigation href={'https://google.com'}>
-        Карта спортивных объектов
-      </Navigation>
-      <Navigation href={'https://google.com'}>Схема стадиона</Navigation>
-    </>
-  )
-}
+export default (
+  <>
+    <UI.Navigation href={'https://google.com'}>Деревня Универсиады</UI.Navigation>
+    <UI.Navigation href={'https://google.com'}>
+      Что посмотреть в Казани
+    </UI.Navigation>
+    <UI.Navigation href={'https://google.com'}>
+      Карта спортивных объектов
+    </UI.Navigation>
+    <UI.Navigation href={'https://google.com'}>Схема стадиона</UI.Navigation>
+  </>
+)

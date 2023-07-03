@@ -1,4 +1,5 @@
 import * as UI from '@/ui/'
+import type { Located } from '@/utils/located'
 import style from './Unit.module.scss'
 
 export interface Time {
@@ -9,10 +10,6 @@ export interface Time {
 export interface Scheduled {
   start: Time
   end: Time
-}
-
-export interface Located {
-  location: string
 }
 
 interface Meta extends Scheduled, Located {

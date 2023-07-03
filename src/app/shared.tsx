@@ -1,6 +1,9 @@
-import * as S from './state/'
+import * as React from 'react';
+import * as S from './state'
 import * as _ from './core'
 import * as D from '@/utils/data'
+import * as L from '@/utils/located'
+import style from './util.module.scss';
 
 export const daymapper = (value: number) => {
   const display = D.render(D.unnormalizedDate(value))
@@ -10,7 +13,7 @@ export const daymapper = (value: number) => {
   }
 }
 
-export const dedup = <A>(as: A[]) => Array.from(new Set(as))
+export const dedup = <A,>(as: A[]) => Array.from(new Set(as))
 
 export const byDay = (currentDay: number) => (itm: D.Dateable) => {
   const day = D.normalizedDate(itm)
@@ -19,10 +22,22 @@ export const byDay = (currentDay: number) => (itm: D.Dateable) => {
 
 export const ErrorByDay = (p: {
   day: number
-  children: (d: string) => string
+  children: ((d: string) => React.ReactNode) | React.ReactNode
 }) => {
-  const d = isNaN(p.day) ? '???' : String(p.day)
-  return p.children(d)
+
+  const render = () => {
+    if(typeof p.children === 'function'){
+      const d = isNaN(p.day) ? '???' : String(p.day)
+      return p.children(d)
+    }
+    return p.children;
+  };
+
+  return (
+    <div className={style.error}>
+      {render()}
+    </div>
+  );
 }
 
 export const navigate = {
@@ -65,3 +80,29 @@ export const useEvent = () => {
 
   return { path, click }
 }
+
+export const useSelect = <A extends L.Located>(data: A[]) => {
+  const [location, setLocation] = React.useState<string | null>(null)
+
+  const locations = dedup(
+    data.map((itm) => ({ value: itm.location, display: itm.location }))
+  )
+
+  const pushLocation = (e: string | null) => {
+    setLocation(e)
+  }
+
+  const filteredData = data.filter(L.byLocation(location));
+
+  const select = {
+    placeholder: 'Выбрать локацию',
+    data: locations,
+    value: location,
+    onChange: pushLocation,
+  };
+
+  return {
+    filteredData,
+    select,
+  };
+};
