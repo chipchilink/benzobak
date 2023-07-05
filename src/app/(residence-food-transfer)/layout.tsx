@@ -1,6 +1,4 @@
-'use client'
-
-import * as NavBar from '@/app/components/NavBar'
+import * as NavBar from '../components/NavBar'
 
 const Item = (p: { href: string; children: string }) => {
   const isActive = NavBar.useActive(p.href, 1)

@@ -1,9 +1,7 @@
-'use client'
-
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import * as React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import cn from 'classnames'
-import { useSport, useEvent } from '@/app/shared'
+import { useSport, useEvent } from '../../shared'
 import nav from './styles.module.scss'
 import { useActive } from '../utils'
 
@@ -22,14 +20,14 @@ const Item = (p: {
     '-active': isActive,
   })
   return (
-    <Link id={p.id} href={p.href} className={className} onClick={onClick}>
+    <Link id={p.id} to={p.href} className={className} onClick={onClick}>
       {p.children}
     </Link>
   )
 }
 
 export const NavBar = () => {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const sport = useSport()
   const event = useEvent()
 

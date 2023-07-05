@@ -1,7 +1,5 @@
-'use client'
-
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import * as React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import cn from 'classnames'
 import { Ripple } from '../Ripple'
 import nav from './NavBar.module.scss'
@@ -9,7 +7,7 @@ import nav from './NavBar.module.scss'
 const noop = () => {}
 
 export const useActive = (href: string, level: number) => {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const current = pathname.split('/')[level]
   const self = href.split('/')[level]
   return current === self
@@ -29,7 +27,7 @@ export const Item = (p: {
   })
 
   return (
-    <Link href={p.href} className={className} onClick={onClick}>
+    <Link to={p.href} className={className} onClick={onClick}>
       <Ripple />
       {p.children}
     </Link>

@@ -9,7 +9,7 @@
 
 html { font-size: 62.5% }
 
-body { font: 1.2em Roboto }
+body { font: 1.2em 'Roboto' }
 
 h1, h2, h3, ul, ol, li, figure {
   margin: 0;

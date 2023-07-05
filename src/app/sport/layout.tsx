@@ -1,10 +1,9 @@
-'use client'
-
-import * as App from '@/app/core/'
-import * as NavBar from '@/app/components/NavBar'
-import * as D from '@/app/components/Day'
-import { useHelped } from '@/app/state'
-import { daymapper, navigate } from '@/app/shared'
+import * as React from 'react';
+import * as App from '../core/'
+import * as NavBar from '../components/NavBar'
+import * as D from '../components/Day'
+import { useHelped } from '../state'
+import { daymapper, navigate } from '../shared'
 
 const sectionMapper = (value: string) => {
   switch (value) {

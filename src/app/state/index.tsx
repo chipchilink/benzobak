@@ -1,8 +1,6 @@
-'use client'
-
 import * as React from 'react'
-import { usePathname } from 'next/navigation'
-import * as Core from '@/app/core'
+import { useLocation } from 'react-router-dom'
+import * as Core from '../../app/core'
 
 interface State {
   currentSportDay: number
@@ -79,7 +77,7 @@ export const useState = () => {
 }
 
 export const State = (p: { children: React.ReactNode }) => {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
   const [state, modifyState] = React.useState(() =>
     getInitialState({ pathname })
   )

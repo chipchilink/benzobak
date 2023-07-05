@@ -1,8 +1,7 @@
+import * as React from 'react';
 import type { CSSProperties } from 'react'
-import Link from 'next/link'
 import styled from './styled.module.scss'
 import MapVillageImg from './map/mapVillage.jpg'
-import Image from 'next/image'
 
 export const Title = (p: { children: string; style?: CSSProperties }) => {
   return (
@@ -17,7 +16,7 @@ export const Description = (p: { children: string; style?: CSSProperties }) => {
 }
 
 export const File = (p: { href: string }) => {
-  return <Link href={`/${p.href}`} className={styled.file} />
+  return <a href={`/${p.href}`} className={styled.file} />
 }
 
 export const RegistrationIn = (p: { children: string }) => {
@@ -40,13 +39,13 @@ export const RegistrationOut = (p: { children: string }) => {
 
 export const Street = (p: { children: string }) => {
   return (
-    <Link
+    <a
       href={`https://2gis.ru/kazan/search/${p.children}`}
       className={styled.street}
     >
       <span className={styled.street_icon} />
       <span className={styled.street_name}>{p.children}</span>
-    </Link>
+    </a>
   )
 }
 
@@ -66,7 +65,7 @@ export const TwoFile = (p: { children: any }) => {
 export const MapVillage = () => {
   return (
     <div className={styled.map_village}>
-      <Image src={MapVillageImg} alt="Карта деревни" />
+      <img src={MapVillageImg} alt="Карта деревни" />
     </div>
   )
 }
@@ -77,9 +76,9 @@ export const Contacts = (p: { children: string }) => {
 
 export const Navigation = (p: { children: string; href: string }) => {
   return (
-    <Link className={styled.navigation} href={p.href}>
+    <a className={styled.navigation} href={p.href}>
       <p>{p.children}</p>
       <span className={styled.navigation_icon} />
-    </Link>
+    </a>
   )
 }

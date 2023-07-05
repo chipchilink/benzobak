@@ -1,5 +1,6 @@
-import * as UI from '@/ui/'
-import type { Located } from '@/utils/located'
+import * as React from 'react'
+import * as UI from '../../../../ui'
+import type { Located } from '../../../../utils/located'
 import style from './Unit.module.scss'
 
 export interface Time {
