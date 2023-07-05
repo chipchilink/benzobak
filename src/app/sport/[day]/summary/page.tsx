@@ -4,13 +4,13 @@ import * as UI from '@/ui'
 import summary from '@/admin/summary.json'
 import * as _ from '@/utils/data'
 import { useHelped } from '@/app/state'
-import { ErrorByDay, byDay } from '@/app/shared'
+import { ErrorByDay, byDay, findLast } from '@/app/shared'
 
 export default () => {
   const app = useHelped()
   const currentDay = app.sport.getCurrentDay()
 
-  const data = summary.findLast(byDay(currentDay))
+  const data = findLast(byDay(currentDay))(summary)
 
   if (!data)
     return (
