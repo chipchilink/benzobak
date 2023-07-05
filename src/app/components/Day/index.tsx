@@ -1,6 +1,5 @@
-'use client'
-
-import Link from 'next/link'
+import * as React from 'react';
+import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import { Ripple } from '../Ripple'
 import style from './Day.module.scss'
@@ -20,7 +19,7 @@ export const Day = (p: {
   })
 
   return (
-    <Link href={p.href} className={className} onClick={p.onClick}>
+    <Link to={p.href} className={className} onClick={p.onClick}>
       {p.children}
       <Ripple />
     </Link>

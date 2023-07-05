@@ -1,7 +1,0 @@
-{
-  "extends": ["next/babel"],
-  "rules": {
-    "import/no-anonymous-default-export": "off",
-    "indent": ["error", 4]
-  }
-}

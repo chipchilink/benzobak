@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as S from './state'
 import * as _ from './core'
-import * as D from '@/utils/data'
-import * as L from '@/utils/located'
+import * as D from '../utils/data'
+import * as L from '../utils/located'
 import style from './util.module.scss'
 
 export const daymapper = (value: number) => {
@@ -13,6 +13,8 @@ export const daymapper = (value: number) => {
   }
 }
 
+export const dedup = <A,>(as: A[]) => Array.from(new Set(as))
+
 export const findLast = <A,>(predicate: (a: A) => boolean) => (as: A[]) => {
   let l = as.length;
 
@@ -20,9 +22,7 @@ export const findLast = <A,>(predicate: (a: A) => boolean) => (as: A[]) => {
     if(predicate(as[l])) return as[l];
   }
   return null;
-};
-
-export const dedup = <A,>(as: A[]) => Array.from(new Set(as))
+}
 
 export const byDay = (currentDay: number) => <T extends D.Dateable>(itm: T) => {
   const day = D.normalizedDate(itm)

@@ -1,10 +1,9 @@
-'use client'
-
-import * as UI from '@/ui'
-import summary from '@/admin/summary.json'
-import * as _ from '@/utils/data'
-import { useHelped } from '@/app/state'
-import { ErrorByDay, byDay, findLast } from '@/app/shared'
+import * as React from 'react'
+import * as UI from '../../../../ui'
+import summary from '../../../../admin/summary.json'
+import * as _ from '../../../../utils/data'
+import { useHelped } from '../../../state'
+import { ErrorByDay, byDay, findLast } from '../../../shared'
 
 export default () => {
   const app = useHelped()

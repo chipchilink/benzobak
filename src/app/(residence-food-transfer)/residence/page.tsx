@@ -1,4 +1,4 @@
-import content from '@/admin/Residence'
+import content from '../../../admin/Residence'
 
 export default () => {
   return content

@@ -1,8 +1,8 @@
-import schedule from '@/admin/schedule.json'
-import leaderboards from '@/admin/leaderboard.json'
-import summary from '@/admin/summary.json'
-import events from '@/admin/events.json'
-import * as D from '@/utils/data'
+import schedule from '../../admin/schedule.json'
+import leaderboards from '../../admin/leaderboard.json'
+import summary from '../../admin/summary.json'
+import events from '../../admin/events.json'
+import * as D from '../../utils/data'
 
 export namespace Sport {
   const aggregateDates = () => {

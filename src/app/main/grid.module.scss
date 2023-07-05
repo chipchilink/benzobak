@@ -50,7 +50,7 @@
     content: '';
   }
 
-  &[href^='/sport'] {
+  &:global(#tile-sport) {
     background: url('./icons/sport-back.svg') 100% 100% no-repeat,
       linear-gradient(226deg, #fae900 0%, #ff1655 100%);
     grid-row: 1/3;
@@ -76,7 +76,7 @@
     }
   }
 
-  &[href^='/residence'] {
+  &:global(#tile-rft) {
     grid-row: 3/5;
     grid-column: 2/3;
 
@@ -84,22 +84,22 @@
     @include icon('rfd');
   }
 
-  &[href^='/events'] {
+  &:global(#tile-events) {
     @include back('events');
     @include icon('events');
   }
 
-  &[href^='/medicine'] {
+  &:global(#tile-medicine) {
     @include back('medicine');
     @include icon('medicine');
   }
 
-  &[href^='/media-center'] {
+  &:global(#tile-media-center) {
     @include back('media-center');
     @include icon('media-center');
   }
 
-  &[href^='/navigation'] {
+  &:global(#tile-navigation) {
     @include back('navigation');
     @include icon('navigation');
   }

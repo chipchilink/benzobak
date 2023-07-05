@@ -1,11 +1,9 @@
-'use client'
-
 import * as React from 'react'
-import schedule from '@/admin/schedule.json'
-import { useHelped } from '@/app/state'
-import { Select } from '@/app/components/Select'
+import schedule from '../../../../admin/schedule.json'
+import { useHelped } from '../../../state'
+import { Select } from '../../../components/Select'
 import * as Unit from './Unit'
-import { ErrorByDay, byDay, useSelect } from '@/app/shared'
+import { ErrorByDay, byDay, useSelect } from '../../../shared'
 
 export default () => {
   const app = useHelped()

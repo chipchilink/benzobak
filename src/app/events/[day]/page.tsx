@@ -1,10 +1,8 @@
-'use client'
-
 import * as React from 'react'
-import events from '@/admin/events.json'
-import { useHelped } from '@/app/state'
-import { Select } from '@/app/components/Select'
-import { ErrorByDay, byDay, useSelect } from '@/app/shared'
+import events from '../../../admin/events.json'
+import { useHelped } from '../../state'
+import { Select } from '../../components/Select'
+import { ErrorByDay, byDay, useSelect } from '../../shared'
 import * as Unit from './Unit'
 
 export default () => {

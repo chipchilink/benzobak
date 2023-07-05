@@ -1,4 +1,4 @@
-import content from '@/admin/Fans'
+import content from '../../admin/Fans'
 
 export default () => {
   return content
