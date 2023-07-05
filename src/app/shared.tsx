@@ -13,9 +13,18 @@ export const daymapper = (value: number) => {
   }
 }
 
+export const findLast = <A,>(predicate: (a: A) => boolean) => (as: A[]) => {
+  let l = as.length;
+
+  while(l--){
+    if(predicate(as[l])) return as[l];
+  }
+  return null;
+};
+
 export const dedup = <A,>(as: A[]) => Array.from(new Set(as))
 
-export const byDay = (currentDay: number) => (itm: D.Dateable) => {
+export const byDay = (currentDay: number) => <T extends D.Dateable>(itm: T) => {
   const day = D.normalizedDate(itm)
   return day === currentDay
 }

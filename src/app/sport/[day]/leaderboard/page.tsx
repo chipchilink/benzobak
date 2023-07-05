@@ -3,14 +3,14 @@
 import leaderboard from '@/admin/leaderboard.json'
 import * as _ from '@/utils/data'
 import { useHelped } from '@/app/state'
-import { ErrorByDay, byDay } from '@/app/shared'
+import { ErrorByDay, byDay, findLast } from '@/app/shared'
 import table from './LeaderBoard.module.scss'
 
 export default () => {
   const app = useHelped()
   const currentDay = app.sport.getCurrentDay()
 
-  const data = leaderboard.findLast(byDay(currentDay))
+  const data = findLast(byDay(currentDay))(leaderboard);
 
   if (!data)
     return (
