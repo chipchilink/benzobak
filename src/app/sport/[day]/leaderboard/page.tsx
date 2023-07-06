@@ -5,6 +5,8 @@ import { useHelped } from '../../../state'
 import { ErrorByDay, byDay, findLast } from '../../../shared'
 import table from './LeaderBoard.module.scss'
 
+export const route = {};
+
 export default () => {
   const app = useHelped()
   const currentDay = app.sport.getCurrentDay()

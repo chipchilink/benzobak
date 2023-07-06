@@ -5,6 +5,8 @@ import { Select } from '../../../components/Select'
 import * as Unit from './Unit'
 import { ErrorByDay, byDay, useSelect } from '../../../shared'
 
+export const route = {};
+
 export default () => {
   const app = useHelped()
   const currentDay = app.sport.getCurrentDay()

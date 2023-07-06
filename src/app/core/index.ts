@@ -4,6 +4,10 @@ import summary from '../../admin/summary.json'
 import events from '../../admin/events.json'
 import * as D from '../../utils/data'
 
+export namespace Main {
+  export const getSections = () => ['main', 'sport', 'navigation', 'events'];
+  export const getFirstSection = () => getSections()[0];
+}
 export namespace Sport {
   const aggregateDates = () => {
     const result = new Set<number>()

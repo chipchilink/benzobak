@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from '../../Route'
 import cn from 'classnames'
 import { Ripple } from '../Ripple'
 import style from './Day.module.scss'
@@ -11,7 +11,7 @@ export const Container = (p: { children: React.ReactNode }) => {
 export const Day = (p: {
   children: string
   isActive: boolean
-  href: string
+  href?: {}
   onClick: () => void
 }) => {
   const className = cn(style.item, {

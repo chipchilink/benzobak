@@ -3,7 +3,8 @@ import * as App from '../core/'
 import { useHelped } from '../state'
 import * as D from '../components/Day'
 import * as NavBar from '../components/NavBar'
-import { daymapper, navigate } from '../shared'
+import * as router from '../routers';
+import { daymapper } from '../shared'
 
 const Day = (p: { value: number; display: string }) => {
   const app = useHelped()
@@ -12,11 +13,10 @@ const Day = (p: { value: number; display: string }) => {
     app.event.pushDay(p.value)
   }
 
-  const href = navigate.events.day(p.value)
   const isActive = app.event.getCurrentDay() === p.value
 
   return (
-    <D.Day href={href} isActive={isActive} onClick={onClick}>
+    <D.Day isActive={isActive} onClick={onClick}>
       {p.display}
     </D.Day>
   )
@@ -34,18 +34,14 @@ const Days = () => {
 }
 
 export default (p: { children: React.ReactNode }) => {
-  const app = useHelped()
-
-  const path = navigate.events.day(app.sport.getCurrentDay())
-
   return (
     <>
       <Days />
       <NavBar.Container>
-        <NavBar.Item href={path} isActive>
+        <NavBar.Item isActive>
           Мероприятия
         </NavBar.Item>
-        <NavBar.Item href={'/fans'} isActive={false}>
+        <NavBar.Item href={router.fans}>
           Болельщикам
         </NavBar.Item>
       </NavBar.Container>

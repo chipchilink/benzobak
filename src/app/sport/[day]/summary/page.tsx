@@ -5,6 +5,8 @@ import * as _ from '../../../../utils/data'
 import { useHelped } from '../../../state'
 import { ErrorByDay, byDay, findLast } from '../../../shared'
 
+export const route = {};
+
 export default () => {
   const app = useHelped()
   const currentDay = app.sport.getCurrentDay()

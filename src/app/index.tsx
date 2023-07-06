@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { Link, BrowserRouter } from 'react-router-dom'
-import { Routes, Route } from 'react-router'
 import cn from 'classnames'
 import { NavBar } from './components/GlobalNavBar'
 import { State } from './state'
@@ -8,6 +6,9 @@ import 'normalize.css'
 import '../font/roboto.css';
 import './globals.css'
 import style from './layout.module.scss'
+
+import { index, IndexRoute, Router, Routers, Link } from './Route';
+import * as route from './routers';
 
 import Events from './events/[day]/page';
 import EventsL from './events/layout';
@@ -31,31 +32,29 @@ import logo from './logo.png'
 
 export default function () {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL ?? '/app'}>
-      <div className={cn(style.page)}>
-        <i className={style.back} />
+    <div className={cn(style.page)}>
+      <i className={style.back} />
+      <Routers>
         <State>
           <header className={style.head}>
-            <Link to="/">
+            <Link to={index}>
               <img src={logo} alt="logo" width={197} height={158} />
             </Link>
           </header>
-          <Routes>
-            <Route index element={<Main />} />
-            <Route path="/events/:day" element={<EventsL><Events /></EventsL>} />
-            <Route path="/sport/:day/schedule" element={<Sport><Schedule /></Sport>} />
-            <Route path="/sport/:day/leaderboard" element={<Sport><Leaderboard /></Sport>} />
-            <Route path="/sport/:day/summary" element={<Sport><Summary /></Sport>} />
-            <Route path="/medicine" element={<Medicine />} />
-            <Route path="/fans" element={<Fans />} />
-            <Route path="/navigation" element={<Navigation />} />
-            <Route path="/food" element={<RFT><Food /></RFT>} />
-            <Route path="/residence" element={<RFT><Residence /></RFT>} />
-            <Route path="/transfer" element={<RFT><Transfer /></RFT>} />
-          </Routes>
+          <IndexRoute><Main /></IndexRoute>
+          <Router path={route.events}><EventsL><Events /></EventsL></Router>
+          <Router path={route.schedule}><Sport><Schedule /></Sport></Router>
+          <Router path={route.leaderboard}><Sport><Leaderboard /></Sport></Router>
+          <Router path={route.summary}><Sport><Summary /></Sport></Router>
+          <Router path={route.medicine}><Medicine /></Router>
+          <Router path={route.fans}><Fans /></Router>
+          <Router path={route.navigation}><Navigation /></Router>
+          <Router path={route.food}><RFT><Food /></RFT></Router>
+          <Router path={route.residence}><RFT><Residence /></RFT></Router>
+          <Router path={route.transfer}><RFT><Transfer /></RFT></Router>
           <NavBar />
         </State>
-      </div>
-    </BrowserRouter>
+      </Routers>
+    </div>
   )
 }

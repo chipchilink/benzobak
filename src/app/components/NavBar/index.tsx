@@ -1,29 +1,24 @@
 import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useRoute } from '../../Route'
 import cn from 'classnames'
 import { Ripple } from '../Ripple'
 import nav from './NavBar.module.scss'
 
 const noop = () => {}
 
-export const useActive = (href: string, level: number) => {
-  const { pathname } = useLocation()
-  const current = pathname.split('/')[level]
-  const self = href.split('/')[level]
-  return current === self
-}
-
 export const Item = (p: {
-  href: string
+  href?: {}
   children: string
   level?: number
   onClick?: () => void
-  isActive: boolean
+  isActive?: boolean
 }) => {
+  const router = useRoute();
   const onClick = p.onClick ?? noop
+  const isActive = p.isActive ?? router.current === p.href;
 
   const className = cn(nav.item, {
-    '-active': p.isActive,
+    '-active': isActive,
   })
 
   return (
