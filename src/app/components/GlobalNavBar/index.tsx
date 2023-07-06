@@ -1,53 +1,88 @@
 import * as React from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import cn from 'classnames'
+import { Link, useRoute, index } from '../../Route'
 import { useSport, useEvent } from '../../shared'
+import * as Core from '../../core'
+import * as route from '../../routers'
+import { useHelped } from '../../state'
 import nav from './styles.module.scss'
-import { useActive } from '../utils'
 
-const noop = () => {}
+export const useSection = (value: string) => {
+  const app = useHelped();
+  const sport = useSport()
+  const events = useEvent()
+
+  switch (value) {
+    case 'main':
+      return {
+        display: 'Главная',
+        route: index,
+        onClick: () => {
+          app.main.pushMainSection('main');
+        },
+      }
+    case 'sport':
+      return {
+        display: 'Спорт',
+        route: route.schedule,
+        onClick: () => {
+          sport.click();
+          app.main.pushMainSection('sport');
+        },
+      }
+    case 'navigation':
+      return {
+        display: 'Навигация',
+        route: route.navigation,
+        onClick: () => {
+          app.main.pushMainSection('navigation');
+        },
+      }
+    case 'events':
+      return {
+        display: 'Мероприятия',
+        route: route.events,
+        onClick: () => {
+          events.click();
+          app.main.pushMainSection('events');
+        },
+      }
+    default:
+      return null;
+  }
+}
 
 const Item = (p: {
-  href: string
-  children: string
-  onClick?: () => void
   id: string
 }) => {
-  const isActive = useActive(p.href, 1)
-  const onClick = p.onClick ?? noop
+  const section = useSection(p.id);
+  const app = useHelped();
+  if(section === null) return null;
+  const isActive = p.id === app.main.getCurrentSection()
 
   const className = cn(nav.item, {
     '-active': isActive,
   })
   return (
-    <Link id={p.id} to={p.href} className={className} onClick={onClick}>
-      {p.children}
+    <Link id={p.id} to={section.route} className={className} onClick={section.onClick}>
+      {section.display}
     </Link>
   )
 }
 
 export const NavBar = () => {
-  const { pathname } = useLocation()
-  const sport = useSport()
-  const event = useEvent()
+  const route = useRoute();
 
-  if (pathname === '/') return null
+  if (route.current === index) return null
 
   return (
     <div className={nav.wrapper}>
       <div className={nav.container}>
-        <Item href="/" id="main">
-          Главная
-        </Item>
-        <Item href={sport.path} onClick={sport.click} id="sport">
-          Спорт
-        </Item>
-        <Item href="/navigation" id="navigation">
-          Навигация
-        </Item>
-        <Item href={event.path} onClick={event.click} id="events">
-          Мероприятия
-        </Item>
+        {Core.Main.getSections().map((section) => {
+          return (
+            <Item id={section} />
+          );
+        })}
       </div>
     </div>
   )

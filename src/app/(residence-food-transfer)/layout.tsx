@@ -1,22 +1,13 @@
 import * as NavBar from '../components/NavBar'
-
-const Item = (p: { href: string; children: string }) => {
-  const isActive = NavBar.useActive(p.href, 1)
-
-  return (
-    <NavBar.Item href={p.href} isActive={isActive}>
-      {p.children}
-    </NavBar.Item>
-  )
-}
+import * as router from '../routers'
 
 export default (p: { children: React.ReactNode }) => {
   return (
     <>
       <NavBar.Container>
-        <Item href="/residence">Проживание</Item>
-        <Item href="/food">Питание</Item>
-        <Item href="/transfer">Трансфер</Item>
+        <NavBar.Item href={router.residence}>Проживание</NavBar.Item>
+        <NavBar.Item href={router.food}>Питание</NavBar.Item>
+        <NavBar.Item href={router.transfer}>Трансфер</NavBar.Item>
       </NavBar.Container>
       {p.children}
     </>

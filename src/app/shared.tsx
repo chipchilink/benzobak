@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as R from './routers';
 import * as S from './state'
 import * as _ from './core'
 import * as D from '../utils/data'
@@ -44,17 +45,6 @@ export const ErrorByDay = (p: {
   return <div className={style.error}>{render()}</div>
 }
 
-export const navigate = {
-  sport: {
-    day: (d: number) => ({
-      page: (p: string) => `/sport/${d}/${p}`,
-    }),
-  },
-  events: {
-    day: (d: number) => `/events/${d}`,
-  },
-}
-
 export const useSport = () => {
   const H = S.useHelped()
 
@@ -66,7 +56,7 @@ export const useSport = () => {
     H.sport.pushSection(section)
   }
 
-  const path = navigate.sport.day(day).page(section)
+  const path = R.schedule;
 
   return { path, click }
 }
@@ -80,7 +70,7 @@ export const useEvent = () => {
     H.sport.pushDay(day)
   }
 
-  const path = navigate.events.day(day)
+  const path = R.events;
 
   return { path, click }
 }

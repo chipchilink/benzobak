@@ -1,61 +1,19 @@
 import * as React from 'react'
-import { useLocation } from 'react-router-dom'
 import * as Core from '../../app/core'
 
 interface State {
+  currentMain: string
   currentSportDay: number
   currentSportSection: string
   currentEventDay: number
 }
 
-namespace Sport {
-  export const dayFromPathname = (pathname: string) => {
-    const xs = pathname.split('/')
-
-    switch (xs[1]) {
-      case 'sport': {
-        return Number(xs[2])
-      }
-      default:
-        return null
-    }
-  }
-
-  export const sectionFromPathname = (pathname: string) => {
-    const xs = pathname.split('/')
-
-    switch (xs[1]) {
-      case 'sport': {
-        return xs[3]
-      }
-      default:
-        return null
-    }
-  }
-}
-
-namespace Event {
-  export const dayFromPathname = (pathname: string) => {
-    const xs = pathname.split('/')
-
-    switch (xs[1]) {
-      case 'events': {
-        return Number(xs[2])
-      }
-      default:
-        return null
-    }
-  }
-}
-
-const getInitialState = (env: { pathname: string }): State => {
+const getInitialState = (): State => {
   return {
-    currentSportDay:
-      Sport.dayFromPathname(env.pathname) ?? Core.Sport.getFirstDay(),
-    currentSportSection:
-      Sport.sectionFromPathname(env.pathname) ?? Core.Sport.getFirstSection(),
-    currentEventDay:
-      Event.dayFromPathname(env.pathname) ?? Core.Events.getFirstDay(),
+    currentMain: Core.Main.getFirstSection(),
+    currentSportDay: Core.Sport.getFirstDay(),
+    currentSportSection: Core.Sport.getFirstSection(),
+    currentEventDay: Core.Events.getFirstDay(),
   }
 }
 
@@ -77,9 +35,8 @@ export const useState = () => {
 }
 
 export const State = (p: { children: React.ReactNode }) => {
-  const { pathname } = useLocation()
   const [state, modifyState] = React.useState(() =>
-    getInitialState({ pathname })
+    getInitialState()
   )
 
   return (
@@ -93,6 +50,10 @@ export const useHelped = () => {
   const ctx = useState()
 
   return {
+    main: {
+      getCurrentSection: () => ctx.state.currentMain,
+      pushMainSection: (ms: string) => ctx.modifyState((s) => ({ ...s, currentMain: ms })),
+    },
     sport: {
       getCurrentDay: () => ctx.state.currentSportDay,
       pushDay: (d: number) =>

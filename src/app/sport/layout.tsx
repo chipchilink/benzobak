@@ -3,16 +3,26 @@ import * as App from '../core/'
 import * as NavBar from '../components/NavBar'
 import * as D from '../components/Day'
 import { useHelped } from '../state'
-import { daymapper, navigate } from '../shared'
+import { daymapper } from '../shared'
+import * as route from '../routers'
 
 const sectionMapper = (value: string) => {
   switch (value) {
     case 'schedule':
-      return 'Расписание'
+      return {
+        display: 'Расписание',
+        route: route.schedule,
+      }
     case 'leaderboard':
-      return 'Турнирная таблица'
+      return {
+        display: 'Турнирная таблица',
+        route: route.leaderboard,
+      }
     case 'summary':
-      return 'Итоги'
+      return {
+        display: 'Итоги',
+        route: route.summary,
+      }
     default: {
       throw new Error(`Секции ${value} не существует!`)
     }
@@ -26,12 +36,10 @@ const Day = (p: { value: number; display: string }) => {
     app.sport.pushDay(p.value)
   }
 
-  const section = app.sport.getCurrentSection()
-  const href = navigate.sport.day(p.value).page(section)
   const isActive = app.sport.getCurrentDay() === p.value
 
   return (
-    <D.Day href={href} isActive={isActive} onClick={onClick}>
+    <D.Day isActive={isActive} onClick={onClick}>
       {p.display}
     </D.Day>
   )
@@ -55,12 +63,12 @@ const Item = (p: { section: string }) => {
     app.sport.pushSection(p.section)
   }
 
-  const href = navigate.sport.day(app.sport.getCurrentDay()).page(p.section)
   const isActive = p.section === app.sport.getCurrentSection()
+  const { route, display } = sectionMapper(p.section);
 
   return (
-    <NavBar.Item href={href} onClick={onClick} isActive={isActive}>
-      {sectionMapper(p.section)}
+    <NavBar.Item onClick={onClick} isActive={isActive} href={route}>
+      {display}
     </NavBar.Item>
   )
 }
